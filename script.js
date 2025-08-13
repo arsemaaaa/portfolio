@@ -3,16 +3,37 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu functionality
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const nav = document.querySelector('.nav');
+    const navList = document.querySelector('.nav-list');
     
-    if (mobileMenuBtn && nav) {
+    if (mobileMenuBtn && navList) {
         mobileMenuBtn.addEventListener('click', function() {
-            nav.classList.toggle('nav-open');
+            navList.classList.toggle('active');
             const icon = mobileMenuBtn.querySelector('i');
-            if (nav.classList.contains('nav-open')) {
+            if (navList.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
             } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = navList.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navList.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navList.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                navList.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             }
@@ -61,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Active navigation highlighting
-    const navLinks = document.querySelectorAll('.nav a');
+    const navLinks = document.querySelectorAll('.nav-list a');
     const sections = document.querySelectorAll('main section');
     
     function updateActiveNav() {
@@ -219,8 +240,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add keyboard navigation support
     document.addEventListener('keydown', function(e) {
         // Escape key closes mobile menu
-        if (e.key === 'Escape' && nav.classList.contains('nav-open')) {
-            nav.classList.remove('nav-open');
+        if (e.key === 'Escape' && navList.classList.contains('active')) {
+            navList.classList.remove('active');
             const icon = mobileMenuBtn.querySelector('i');
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
