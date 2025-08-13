@@ -186,7 +186,7 @@ p {
     gap: 0;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-    padding: 1rem 0;
+    padding: 0;
     z-index: 1000;
     margin-top: 0.5rem;
     border: 1px solid #e9ecef;
@@ -201,6 +201,7 @@ p {
   
   .nav-list li {
     width: 100%;
+    background: #ffffff;
   }
   
   .nav-list a {
@@ -212,6 +213,7 @@ p {
     transition: var(--transition);
     background: #ffffff;
     border-bottom: 1px solid #f8f9fa;
+    width: 100%;
   }
   
   .nav-list li:last-child a {
