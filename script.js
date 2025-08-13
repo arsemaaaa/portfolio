@@ -5,24 +5,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navList = document.querySelector('.nav-list');
     
+    console.log('=== MOBILE MENU DEBUG ===');
     console.log('Mobile menu button:', mobileMenuBtn);
     console.log('Nav list:', navList);
+    console.log('Nav list classes:', navList ? navList.className : 'No nav list found');
     
     if (mobileMenuBtn && navList) {
+        console.log('Both elements found, adding click listener');
+        
         mobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
-            console.log('Mobile menu clicked!');
+            console.log('=== MOBILE MENU CLICKED ===');
+            console.log('Current nav-list classes:', navList.className);
+            
             navList.classList.toggle('active');
+            
+            console.log('After toggle, nav-list classes:', navList.className);
+            console.log('Contains active?', navList.classList.contains('active'));
             
             const icon = mobileMenuBtn.querySelector('i');
             if (navList.classList.contains('active')) {
-                console.log('Menu opened');
+                console.log('Menu opened - changing icon to X');
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
             } else {
-                console.log('Menu closed');
+                console.log('Menu closed - changing icon to bars');
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             }
@@ -54,6 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         console.error('Mobile menu elements not found!');
+        console.error('mobileMenuBtn:', mobileMenuBtn);
+        console.error('navList:', navList);
     }
 
     // Smooth scrolling for anchor links
