@@ -5,14 +5,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navList = document.querySelector('.nav-list');
     
+    console.log('Mobile menu button:', mobileMenuBtn);
+    console.log('Nav list:', navList);
+    
     if (mobileMenuBtn && navList) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Mobile menu clicked!');
             navList.classList.toggle('active');
+            
             const icon = mobileMenuBtn.querySelector('i');
             if (navList.classList.contains('active')) {
+                console.log('Menu opened');
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
             } else {
+                console.log('Menu closed');
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             }
@@ -22,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const navLinks = navList.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
+                console.log('Nav link clicked, closing menu');
                 navList.classList.remove('active');
                 const icon = mobileMenuBtn.querySelector('i');
                 icon.classList.remove('fa-times');
@@ -32,12 +43,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
             if (!navList.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                navList.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                if (navList.classList.contains('active')) {
+                    console.log('Clicked outside, closing menu');
+                    navList.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
             }
         });
+    } else {
+        console.error('Mobile menu elements not found!');
     }
 
     // Smooth scrolling for anchor links
@@ -279,36 +295,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Console welcome message
     console.log('%c👋 Welcome to Arsema\'s Portfolio!', 'color: #3498db; font-size: 20px; font-weight: bold;');
     console.log('%cFeel free to explore the code and get in touch!', 'color: #7f8c8d; font-size: 14px;');
-});
-
-// Add CSS for mobile menu
-const mobileMenuCSS = `
-@media (max-width: 768px) {
-    .nav {
-        position: fixed;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--background-white);
-        flex-direction: column;
-        padding: 2rem;
-        box-shadow: var(--shadow-medium);
-        transform: translateY(-100%);
-        transition: transform 0.3s ease;
-        z-index: 999;
-    }
-    
-    .nav.nav-open {
-        transform: translateY(0);
-    }
-    
-    .mobile-menu-btn {
-        display: block;
-    }
-}
-`;
-
-// Inject mobile menu CSS
-const style = document.createElement('style');
-style.textContent = mobileMenuCSS;
-document.head.appendChild(style); 
+}); 
