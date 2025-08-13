@@ -165,14 +165,14 @@ p {
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--background-white);
+    background: #e9ecef;
     flex-direction: column;
     gap: 0;
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
     padding: 1rem 0;
     z-index: 1000;
-    border: 1px solid var(--border-color);
+    border: 2px solid #dee2e6;
     margin-top: 0.5rem;
   }
   
@@ -183,7 +183,7 @@ p {
   
   .nav-list li {
     width: 100%;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #dee2e6;
   }
   
   .nav-list li:last-child {
