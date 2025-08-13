@@ -186,18 +186,19 @@ p {
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
     right: 0;
     background: #ffffff;
     flex-direction: column;
     gap: 0;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-radius: var(--border-radius);
     padding: 0;
     z-index: 1000;
     margin-top: 0.5rem;
     border: 1px solid #e9ecef;
     min-height: 200px; /* Debug: ensure minimum height */
+    width: auto;
+    min-width: 200px;
   }
   
   .nav-list.active {
@@ -207,7 +208,7 @@ p {
   }
   
   .nav-list li {
-    width: 100%;
+    width: auto;
     background: #ffffff;
   }
   
@@ -215,12 +216,13 @@ p {
     display: block;
     padding: 1rem 2rem;
     border-radius: 0;
-    text-align: center;
+    text-align: left;
     color: var(--text-dark);
     transition: var(--transition);
     background: #ffffff;
     border-bottom: 1px solid #f8f9fa;
-    width: 100%;
+    width: auto;
+    white-space: nowrap;
   }
   
   .nav-list li:last-child a {
