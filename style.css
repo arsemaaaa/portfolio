@@ -160,7 +160,7 @@ p {
   }
   
   .nav-list {
-    display: none;
+    display: none !important;
     position: absolute;
     top: 100%;
     left: 0;
@@ -177,7 +177,7 @@ p {
   }
   
   .nav-list.active {
-    display: flex;
+    display: flex !important;
     animation: slideDown 0.3s ease-out;
   }
   
@@ -861,11 +861,6 @@ main {
   }
   
   .nav {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .nav-list {
     flex-direction: column;
     gap: 0.5rem;
   }
